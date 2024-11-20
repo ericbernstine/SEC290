@@ -1,0 +1,60 @@
+## Eric Bernstine
+## SEC290
+## Morse code conversion, Step 3.
+## Error checking handled through verification if value exists within the dictionary. 
+
+def translate_to_morse(strInput):
+    output = ''
+    strList = []
+    for x in strInput:
+        if x in alpha_to_morse: 
+            strList.append(alpha_to_morse[x])
+        else:
+            output = 'Invalid input detected: Please try again.'
+            return output
+    output = ' '.join(strList)
+    return output
+        
+def translate_to_alpha(morseInput):
+    output = ''
+    morseList = []
+    morseInput = morseInput.split(' ')
+    for x in morseInput:
+        if x in morse_to_alpha:
+            morseList.append(morse_to_alpha[x])
+        else:
+            output = 'Invalid input detected: Please try again.'
+            return output
+    output = ' '.join(morseList)
+    return output
+
+
+from morse import alpha_to_morse, morse_to_alpha
+menu = """
+    Morse Code Translator
+    
+    0: Exit
+    1: Translate a word into Morse Code
+    2: Translate Morse Code to text."""
+
+done = False
+while not done:
+    print(menu)
+    input_value = int(input("Please make a selection of 0, 1, or 2: "))
+    
+    if input_value == 0:
+        done = True
+        
+    elif input_value == 1:
+        letter_input = input('Please enter your characters to translate: ')
+        letter_input = letter_input.strip().upper()
+        result = translate_to_morse(letter_input)
+        print(result)
+        
+    elif input_value == 2:
+        morse_input = input('Please enter Morse Code, seperated by spaces: ').strip()
+        result = translate_to_alpha(morse_input)
+        print(result)
+
+        
+        
